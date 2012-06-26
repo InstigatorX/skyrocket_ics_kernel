@@ -1,0 +1,1 @@
+cmd_arch/arm/mach-msm/dal_remotetest.ko := /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL -r  -T /Volumes/Kernel/skyrocket_ics_kernel/scripts/module-common.lds --build-id  -o arch/arm/mach-msm/dal_remotetest.ko arch/arm/mach-msm/dal_remotetest.o arch/arm/mach-msm/dal_remotetest.mod.o

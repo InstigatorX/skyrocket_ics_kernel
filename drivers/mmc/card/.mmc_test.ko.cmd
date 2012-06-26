@@ -1,0 +1,1 @@
+cmd_drivers/mmc/card/mmc_test.ko := /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL -r  -T /Volumes/Kernel/skyrocket_ics_kernel/scripts/module-common.lds --build-id  -o drivers/mmc/card/mmc_test.ko drivers/mmc/card/mmc_test.o drivers/mmc/card/mmc_test.mod.o
