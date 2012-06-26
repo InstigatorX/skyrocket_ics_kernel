@@ -1,7 +1,0 @@
-kernel/drivers/misc/lkdtm.ko
-kernel/drivers/misc/ak8975.ko
-kernel/drivers/misc/k3dh.ko
-kernel/drivers/misc/pmic8058-pwm.ko
-kernel/drivers/misc/pm8xxx-upl.ko
-kernel/drivers/misc/pmic8058-xoadc.ko
-kernel/drivers/misc/a2220.ko

@@ -1,1 +1,0 @@
-cmd_arch/arm/perfmon/ksapi.ko := /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL -r  -T /Volumes/Kernel/kernel.3/scripts/module-common.lds --build-id  -o arch/arm/perfmon/ksapi.ko arch/arm/perfmon/ksapi.o arch/arm/perfmon/ksapi.mod.o
