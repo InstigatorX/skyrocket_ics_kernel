@@ -33,8 +33,6 @@
 #include "acpuclock.h"
 #include "avs.h"
 
-extern unsigned int max_capped;
-
 #ifdef CONFIG_SEC_DEBUG_DCVS_LOG
 #include <mach/sec_debug.h>
 #endif
@@ -642,9 +640,6 @@ static int acpuclk_8x60_set_rate(int cpu, unsigned long rate,
 		goto out;
 	}
 	
-	if (max_capped && rate > max_capped)
-		rate = max_capped;
-
 	if (reason == SETRATE_CPUFREQ || reason == SETRATE_HOTPLUG)
 		mutex_lock(&drv_state.lock);
 
