@@ -32,7 +32,7 @@
 
 unsigned int max_capped;
 /* initialize to a default cap freq */
-static unsigned int screen_off_max_freq = 594000;
+static unsigned int screen_off_max_freq = 384000;
 
 #ifdef CONFIG_SMP
 struct cpufreq_work_struct {
