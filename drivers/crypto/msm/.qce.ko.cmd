@@ -1,1 +1,0 @@
-cmd_drivers/crypto/msm/qce.ko := /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL -r  -T /Volumes/Kernel/skyrocket_ics_kernel/scripts/module-common.lds --build-id  -o drivers/crypto/msm/qce.ko drivers/crypto/msm/qce.o drivers/crypto/msm/qce.mod.o

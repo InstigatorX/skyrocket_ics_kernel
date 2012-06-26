@@ -1,1 +1,0 @@
-cmd_drivers/video/msm/vidc/vidc_venc.o := /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL    -r -o drivers/video/msm/vidc/vidc_venc.o drivers/video/msm/vidc/common/enc/venc.o drivers/video/msm/vidc/common/enc/venc_internal.o 

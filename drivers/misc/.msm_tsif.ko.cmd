@@ -1,1 +1,0 @@
-cmd_drivers/misc/msm_tsif.ko := /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL -r  -T /Volumes/Kernel/skyrocket_ics_kernel/scripts/module-common.lds --build-id  -o drivers/misc/msm_tsif.ko drivers/misc/msm_tsif.o drivers/misc/msm_tsif.mod.o

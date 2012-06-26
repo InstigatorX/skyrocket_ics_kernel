@@ -1,1 +1,0 @@
-cmd_drivers/regulator/built-in.o :=  /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL    -r -o drivers/regulator/built-in.o drivers/regulator/core.o drivers/regulator/dummy.o drivers/regulator/pmic8058-regulator.o drivers/regulator/pmic8901-regulator.o 

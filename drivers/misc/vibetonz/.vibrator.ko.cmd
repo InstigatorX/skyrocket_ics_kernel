@@ -1,1 +1,0 @@
-cmd_drivers/misc/vibetonz/vibrator.ko := /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL -r  -T /Volumes/Kernel/skyrocket_ics_kernel/scripts/module-common.lds --build-id  -o drivers/misc/vibetonz/vibrator.ko drivers/misc/vibetonz/vibrator.o drivers/misc/vibetonz/vibrator.mod.o
