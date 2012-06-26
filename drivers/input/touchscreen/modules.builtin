@@ -1,0 +1,2 @@
+kernel/drivers/input/touchscreen/atmel_maxtouch.ko
+kernel/drivers/input/touchscreen/qt602240_ts.ko

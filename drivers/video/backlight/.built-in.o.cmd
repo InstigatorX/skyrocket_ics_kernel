@@ -1,0 +1,1 @@
+cmd_drivers/video/backlight/built-in.o :=  /opt/toolchains/arm-eabi-4.4.3/bin/arm-eabi-ld -EL    -r -o drivers/video/backlight/built-in.o drivers/video/backlight/backlight.o drivers/video/backlight/generic_bl.o 
