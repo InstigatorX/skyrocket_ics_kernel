@@ -939,21 +939,22 @@ static unsigned int __init select_freq_plan(void)
 
   /* match max OC allowable */
   max_khz = 1728000;
+  
   pvs = (pte_efuse >> 10) & 0x7;
   if (pvs == 0x7)
   		pvs = (pte_efuse >> 13) & 0x7;
   		
 		switch (pvs) {
 		/* set everything to default to freq fast table regardless of efuse reading */
-		case 0x0:
-		case 0x7:
-		case 0x1:
-		case 0x3:
-		default:
-			acpu_freq_tbl = acpu_freq_tbl_fast;
-			pr_info("ACPU PVS: Fast\n");
-			break;
-	}
+			case 0x0:
+			case 0x7:
+			case 0x1:
+			case 0x3:
+			default:
+				acpu_freq_tbl = acpu_freq_tbl_fast;
+				pr_info("ACPU PVS: Fast\n");
+				break;
+		}
 
 	/* Truncate the table based to max_khz. */
 	for (f = acpu_freq_tbl; f->acpuclk_khz != 0; f++) {
