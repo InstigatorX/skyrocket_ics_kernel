@@ -397,7 +397,7 @@ int set_freq_limit(unsigned long id, unsigned int freq)
 	set_min_lock(min);
 	set_max_lock(max);
 
-	printk("%s: 0x%x %d, min %d, max %d\n", __FUNCTION__, id, freq, min, max);
+	printk("%s: 0x%lx %d, min %d, max %d\n", __FUNCTION__, id, freq, min, max);
 
 	/* need to update now */
 	if (id & UPDATE_NOW_BITS)

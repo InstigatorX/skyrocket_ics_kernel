@@ -32,7 +32,6 @@
 
 #include "acpuclock.h"
 #include "avs.h"
-
 #ifdef CONFIG_SEC_DEBUG_DCVS_LOG
 #include <mach/sec_debug.h>
 #endif
@@ -602,7 +601,7 @@ static int acpuclk_8x60_set_rate(int cpu, unsigned long rate,
 		rc = -EINVAL;
 		goto out;
 	}
-	
+
 	if (reason == SETRATE_CPUFREQ || reason == SETRATE_HOTPLUG)
 		mutex_lock(&drv_state.lock);
 
@@ -939,11 +938,10 @@ static unsigned int __init select_freq_plan(void)
 
   /* match max OC allowable */
   max_khz = 1728000;
-  
   pvs = (pte_efuse >> 10) & 0x7;
   if (pvs == 0x7)
   		pvs = (pte_efuse >> 13) & 0x7;
-  		
+
 		switch (pvs) {
 		/* set everything to default to freq fast table regardless of efuse reading */
 			case 0x0:
