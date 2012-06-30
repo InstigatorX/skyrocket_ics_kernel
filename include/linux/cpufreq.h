@@ -341,10 +341,10 @@ enum {
 };
 
 #define MAX_FREQ_LIMIT		1728000
-#define MIN_FREQ_LIMIT		384000
+#define MIN_FREQ_LIMIT		192000
 
 #define MAX_TOUCH_LIMIT		486000
-#define MAX_UNICPU_LIMIT	1728000
+#define MAX_UNICPU_LIMIT	1242000
 
 #define UPDATE_NOW_BITS		0xFF
 
@@ -417,10 +417,10 @@ extern struct cpufreq_governor cpufreq_gov_interactive;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_PEGASUSQ)
 extern struct cpufreq_governor cpufreq_gov_pegasusq;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_pegasusq)
+*/
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_HOTPLUG)
 extern struct cpufreq_governor cpufreq_gov_hotplug;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_hotplug)
-*/
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTERACTIVEX)
 extern struct cpufreq_governor cpufreq_gov_interactivex;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_interactivex)
