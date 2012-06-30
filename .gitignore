@@ -22,6 +22,8 @@ modules.builtin
 *.lzo
 *.patch
 *.gcno
+scripts/*
+arch/arm/boot/*
 /tags
 /TAGS
 /linux
