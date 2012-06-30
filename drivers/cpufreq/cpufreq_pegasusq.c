@@ -166,7 +166,6 @@ static unsigned int get_nr_run_avg(void)
 #define HOTPLUG_DOWN_INDEX			(0)
 #define HOTPLUG_UP_INDEX			(1)
 
-#ifdef CONFIG_CPU_EXYNOS4210
 static int hotplug_rq[4][2] = {
 	{0, 350}, {350, 200}, {200, 300}, {300, 0}
 };
@@ -177,18 +176,6 @@ static int hotplug_freq[4][2] = {
 	{200000, 500000},
 	{200000, 0}
 };
-#else
-static int hotplug_rq[4][2] = {
-	{0, 100}, {100, 200}, {200, 300}, {300, 0}
-};
-
-static int hotplug_freq[4][2] = {
-	{0, 500000},
-	{200000, 500000},
-	{200000, 500000},
-	{200000, 0}
-};
-#endif
 
 static unsigned int min_sampling_rate;
 
@@ -434,9 +421,6 @@ show_one(down_differential, down_differential);
 show_one(freq_step, freq_step);
 show_one(cpu_up_rate, cpu_up_rate);
 show_one(cpu_down_rate, cpu_down_rate);
-#ifndef CONFIG_CPU_EXYNOS4210
-show_one(up_nr_cpus, up_nr_cpus);
-#endif
 show_one(max_cpu_lock, max_cpu_lock);
 show_one(dvfs_debug, dvfs_debug);
 show_one(up_threshold_at_min_freq, up_threshold_at_min_freq);
@@ -470,57 +454,21 @@ static ssize_t store_##file_name##_##num_core##_##up_down		\
 
 show_hotplug_param(hotplug_freq, 1, 1);
 show_hotplug_param(hotplug_freq, 2, 0);
-#ifndef CONFIG_CPU_EXYNOS4210
-show_hotplug_param(hotplug_freq, 2, 1);
-show_hotplug_param(hotplug_freq, 3, 0);
-show_hotplug_param(hotplug_freq, 3, 1);
-show_hotplug_param(hotplug_freq, 4, 0);
-#endif
 
 show_hotplug_param(hotplug_rq, 1, 1);
 show_hotplug_param(hotplug_rq, 2, 0);
-#ifndef CONFIG_CPU_EXYNOS4210
-show_hotplug_param(hotplug_rq, 2, 1);
-show_hotplug_param(hotplug_rq, 3, 0);
-show_hotplug_param(hotplug_rq, 3, 1);
-show_hotplug_param(hotplug_rq, 4, 0);
-#endif
 
 store_hotplug_param(hotplug_freq, 1, 1);
 store_hotplug_param(hotplug_freq, 2, 0);
-#ifndef CONFIG_CPU_EXYNOS4210
-store_hotplug_param(hotplug_freq, 2, 1);
-store_hotplug_param(hotplug_freq, 3, 0);
-store_hotplug_param(hotplug_freq, 3, 1);
-store_hotplug_param(hotplug_freq, 4, 0);
-#endif
 
 store_hotplug_param(hotplug_rq, 1, 1);
 store_hotplug_param(hotplug_rq, 2, 0);
-#ifndef CONFIG_CPU_EXYNOS4210
-store_hotplug_param(hotplug_rq, 2, 1);
-store_hotplug_param(hotplug_rq, 3, 0);
-store_hotplug_param(hotplug_rq, 3, 1);
-store_hotplug_param(hotplug_rq, 4, 0);
-#endif
 
 define_one_global_rw(hotplug_freq_1_1);
 define_one_global_rw(hotplug_freq_2_0);
-#ifndef CONFIG_CPU_EXYNOS4210
-define_one_global_rw(hotplug_freq_2_1);
-define_one_global_rw(hotplug_freq_3_0);
-define_one_global_rw(hotplug_freq_3_1);
-define_one_global_rw(hotplug_freq_4_0);
-#endif
 
 define_one_global_rw(hotplug_rq_1_1);
 define_one_global_rw(hotplug_rq_2_0);
-#ifndef CONFIG_CPU_EXYNOS4210
-define_one_global_rw(hotplug_rq_2_1);
-define_one_global_rw(hotplug_rq_3_0);
-define_one_global_rw(hotplug_rq_3_1);
-define_one_global_rw(hotplug_rq_4_0);
-#endif
 
 static ssize_t store_sampling_rate(struct kobject *a, struct attribute *b,
 				   const char *buf, size_t count)
@@ -664,20 +612,6 @@ static ssize_t store_cpu_down_rate(struct kobject *a, struct attribute *b,
 	return count;
 }
 
-#ifndef CONFIG_CPU_EXYNOS4210
-static ssize_t store_up_nr_cpus(struct kobject *a, struct attribute *b,
-				const char *buf, size_t count)
-{
-	unsigned int input;
-	int ret;
-	ret = sscanf(buf, "%u", &input);
-	if (ret != 1)
-		return -EINVAL;
-	dbs_tuners_ins.up_nr_cpus = min(input, num_possible_cpus());
-	return count;
-}
-#endif
-
 static ssize_t store_max_cpu_lock(struct kobject *a, struct attribute *b,
 				  const char *buf, size_t count)
 {
@@ -771,9 +705,6 @@ define_one_global_rw(down_differential);
 define_one_global_rw(freq_step);
 define_one_global_rw(cpu_up_rate);
 define_one_global_rw(cpu_down_rate);
-#ifndef CONFIG_CPU_EXYNOS4210
-define_one_global_rw(up_nr_cpus);
-#endif
 define_one_global_rw(max_cpu_lock);
 define_one_global_rw(hotplug_lock);
 define_one_global_rw(dvfs_debug);
@@ -791,29 +722,14 @@ static struct attribute *dbs_attributes[] = {
 	&freq_step.attr,
 	&cpu_up_rate.attr,
 	&cpu_down_rate.attr,
-#ifndef CONFIG_CPU_EXYNOS4210
-	&up_nr_cpus.attr,
-#endif
 	/* priority: hotplug_lock > max_cpu_lock */
 	&max_cpu_lock.attr,
 	&hotplug_lock.attr,
 	&dvfs_debug.attr,
 	&hotplug_freq_1_1.attr,
 	&hotplug_freq_2_0.attr,
-#ifndef CONFIG_CPU_EXYNOS4210
-	&hotplug_freq_2_1.attr,
-	&hotplug_freq_3_0.attr,
-	&hotplug_freq_3_1.attr,
-	&hotplug_freq_4_0.attr,
-#endif
 	&hotplug_rq_1_1.attr,
 	&hotplug_rq_2_0.attr,
-#ifndef CONFIG_CPU_EXYNOS4210
-	&hotplug_rq_2_1.attr,
-	&hotplug_rq_3_0.attr,
-	&hotplug_rq_3_1.attr,
-	&hotplug_rq_4_0.attr,
-#endif
 	&up_threshold_at_min_freq.attr,
 	&freq_for_responsiveness.attr,
 	NULL
@@ -873,10 +789,6 @@ static void cpu_down_work(struct work_struct *work)
 
 static void dbs_freq_increase(struct cpufreq_policy *p, unsigned int freq)
 {
-#ifndef CONFIG_ARCH_EXYNOS4
-	if (p->cur == p->max)
-		return;
-#endif
 
 	__cpufreq_driver_target(p, freq, CPUFREQ_RELATION_L);
 }
@@ -1123,11 +1035,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 	}
 
 	/* Check for frequency decrease */
-#ifndef CONFIG_ARCH_EXYNOS4
-	/* if we cannot reduce the frequency anymore, break out early */
-	if (policy->cur == policy->min)
-		return;
-#endif
+
 
 	/*
 	 * The optimal frequency is the frequency that is the lowest that
