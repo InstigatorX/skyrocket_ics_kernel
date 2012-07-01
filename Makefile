@@ -374,10 +374,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks \
--marm -mtune=cortex-a9 -march=armv7-a \
--fpredictive-commoning -ffast-math -fgcse-after-reload \
--fipa-cp-clone
+		   -fno-delete-null-pointer-checks
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL := -DTARGET_PRODUCT="$(TARGET_PRODUCT)"
 KBUILD_AFLAGS   := -D__ASSEMBLY__
