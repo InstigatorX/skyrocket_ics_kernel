@@ -154,7 +154,7 @@ static unsigned int get_nr_run_avg(void)
 #define MAX_HOTPLUG_RATE			(40u)
 
 #define DEF_MAX_CPU_LOCK			(0)
-#define DEF_UP_NR_CPUS				(1)
+#define DEF_UP_NR_CPUS				(2)
 #define DEF_CPU_UP_RATE				(10)
 #define DEF_CPU_DOWN_RATE			(20)
 #define DEF_FREQ_STEP				(40)
@@ -283,7 +283,7 @@ static void apply_hotplug_lock(void)
 	/* do turn_on/off cpus */
 	dbs_info = &per_cpu(od_cpu_dbs_info, 0); /* from CPU0 */
 	online = num_online_cpus();
-	possible = num_possible_cpus();
+	possible = 2;
 	lock = atomic_read(&g_hotplug_lock);
 	flag = lock - online;
 
