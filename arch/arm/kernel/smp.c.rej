@@ -1,0 +1,16 @@
+***************
+*** 31,36 ****
+  #include <asm/cacheflush.h>
+  #include <asm/cpu.h>
+  #include <asm/cputype.h>
+  #include <asm/mmu_context.h>
+  #include <asm/pgtable.h>
+  #include <asm/pgalloc.h>
+--- 31,37 ----
+  #include <asm/cacheflush.h>
+  #include <asm/cpu.h>
+  #include <asm/cputype.h>
++ #include <asm/topology.h>
+  #include <asm/mmu_context.h>
+  #include <asm/pgtable.h>
+  #include <asm/pgalloc.h>
