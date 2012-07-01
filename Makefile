@@ -373,7 +373,13 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks
+		   -fno-delete-null-pointer-checks \
+-marm -mtune=cortex-a9 -march=armv7-a \
+-fgraphite-identity -ftree-loop-distribution \
+-floop-interchange -floop-block -floop-strip-mine -ftree-loop-linear \
+-funswitch-loops -fpredictive-commoning -ffast-math -fgcse-after-reload \
+-fipa-cp-clone
+
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL := -DTARGET_PRODUCT="$(TARGET_PRODUCT)"
 KBUILD_AFLAGS   := -D__ASSEMBLY__
