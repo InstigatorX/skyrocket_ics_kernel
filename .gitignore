@@ -24,6 +24,7 @@ modules.builtin
 *.gcno
 scripts/*
 arch/arm/boot/*
+.DS_Store
 /tags
 /TAGS
 /linux
@@ -64,4 +65,3 @@ GTAGS
 _t32
 _tool
 Module.symvers
-.DS_Store
