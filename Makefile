@@ -353,10 +353,11 @@ CC		= $(CROSS_COMPILE)gcc
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
-CFLAGS_MODULE   = -DMODULE -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a9 -mtune=cortex-a8 -mcpu=cortex-a9 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops
-AFLAGS_MODULE   =
-LDFLAGS_MODULE  =
-CFLAGS_KERNEL	= -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -mcpu=cortex-a9 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops
+MODFLAGS		= -DMODULE -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a9 -mtune=cortex-a8 -mcpu=cortex-a9 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -funroll-loops
+CFLAGS_MODULE   = $(MODFLAGS)
+AFLAGS_MODULE   = $(MODFLAGS)
+LDFLAGS_MODULE  = -T $(srctree)/scripts/module-common.lds
+CFLAGS_KERNEL	= -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -mcpu=cortex-a9 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -funroll-loops
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
@@ -593,6 +594,7 @@ ifdef CONFIG_CC_OPTIMIZE_ALOT
 KBUILD_CFLAGS	+= -O3
 endif
 
+
 include $(srctree)/arch/$(SRCARCH)/Makefile
 
 ifneq ($(CONFIG_FRAME_WARN),0)
@@ -607,6 +609,7 @@ endif
 # This warning generated too much noise in a regular build.
 # Use make W=1 to enable this warning (see scripts/Makefile.build)
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
+KBUILD_CFLAGS += $(call cc-disable-warning, uninitialized)
 
 ifdef CONFIG_FRAME_POINTER
 KBUILD_CFLAGS	+= -fno-omit-frame-pointer -fno-optimize-sibling-calls
