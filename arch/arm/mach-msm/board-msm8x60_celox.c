@@ -4232,10 +4232,11 @@ static void __init msm8x60_init_dsps(void)
 
 #define MSM_PMEM_KERNEL_EBI1_SIZE  0x600000
 #ifndef CONFIG_SEC_KERNEL_REBASE_FOR_PMEM_OPTIMIZATION
+/* InstigatorX */
 #define MSM_PMEM_ADSP_SIZE         0x4200000
 #else
 #define MSM_PMEM_ADSP_BASE         0x40400000
-#define MSM_PMEM_ADSP_SIZE         0x02900000
+#define MSM_PMEM_ADSP_SIZE         0x02900000 
 #endif
 #define MSM_PMEM_AUDIO_SIZE        0x28B000
 
