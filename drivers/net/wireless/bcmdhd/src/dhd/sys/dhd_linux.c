@@ -2593,7 +2593,7 @@ int sleep_never = 0;
 static int
 dhd_stop(struct net_device *net)
 {
-	int ifidx = 0;
+	int ifidx;
 	dhd_info_t *dhd = *(dhd_info_t **)netdev_priv(net);
 	DHD_OS_WAKE_LOCK(&dhd->pub);
 	DHD_TRACE(("%s: Enter %p\n", __FUNCTION__, net));
@@ -2628,9 +2628,6 @@ dhd_stop(struct net_device *net)
 	/* Stop the protocol module */
 	dhd_prot_stop(&dhd->pub);
 
-OLD_MOD_DEC_USE_COUNT;
-exit:
-
 #if defined(WL_CFG80211)
 	if (ifidx == 0) {
 		if (!dhd_download_fw_on_driverload)
@@ -2653,6 +2650,8 @@ exit:
 	dhd->pub.hang_was_sent = 0;
 	dhd->pub.rxcnt_timeout = 0;
 	dhd->pub.txcnt_timeout = 0;
+	OLD_MOD_DEC_USE_COUNT;
+exit:
 	DHD_OS_WAKE_UNLOCK(&dhd->pub);
 	return 0;
 }
