@@ -353,11 +353,11 @@ CC		= $(CROSS_COMPILE)gcc
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
-MODFLAGS		= -DMODULE -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a9 -mtune=cortex-a8 -mcpu=cortex-a9 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -funroll-loops
+MODFLAGS		= -DMODULE -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -funroll-loops
 CFLAGS_MODULE   = $(MODFLAGS)
 AFLAGS_MODULE   = $(MODFLAGS)
 LDFLAGS_MODULE  = -T $(srctree)/scripts/module-common.lds
-CFLAGS_KERNEL	= -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -mcpu=cortex-a9 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -funroll-loops
+CFLAGS_KERNEL	= -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -funroll-loops
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
@@ -375,12 +375,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks \
--marm -mtune=cortex-a9 -mtune=cortex-a8 -mcpu=cortex-a9 -mcpu=cortex-a8 -march=armv7-a \
--fgraphite-identity -ftree-loop-distribution \
--floop-interchange -floop-block -floop-strip-mine -ftree-loop-linear \
--funswitch-loops -fpredictive-commoning -ffast-math -fgcse-after-reload \
--fipa-cp-clone
+		   -fno-delete-null-pointer-checks
 
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL := -DTARGET_PRODUCT="$(TARGET_PRODUCT)"
